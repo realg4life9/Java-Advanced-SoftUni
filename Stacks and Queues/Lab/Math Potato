@@ -1,0 +1,45 @@
+package StacksAndQueuesLab;
+
+import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class MathPotato {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] players = scanner.nextLine().split("\\s+");
+        int n = Integer.parseInt(scanner.nextLine());
+        ArrayDeque<String> playersQueues = new ArrayDeque<>();
+        Collections.addAll(playersQueues, players);
+        int countCycle = 1;
+
+        while (playersQueues.size() != 1) {
+
+            for (int i = 1; i < n; i++) {
+                playersQueues.offer(playersQueues.poll());
+            }
+            if (isPrime(countCycle) &&  countCycle != 1){
+                System.out.println("Prime " + playersQueues.peek());
+            } else {
+                System.out.println("Removed " + playersQueues.poll());
+            }
+
+            countCycle++;
+        }
+
+
+        for (String player : playersQueues) {
+            System.out.println("Last is " + player);
+        }
+    }
+    private  static boolean isPrime(int count){
+        boolean isPrime = true;
+        for (int i = 2; i <= count / 2 ; i++) {
+            if (count % i == 0){
+                isPrime=false;
+                break;
+            }
+        }
+        return isPrime;
+    }
+}

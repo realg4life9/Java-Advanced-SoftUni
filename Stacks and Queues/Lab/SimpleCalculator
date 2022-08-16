@@ -1,0 +1,28 @@
+package StacksAndQueuesLab;
+
+import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class SimpleCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] input = scanner.nextLine().split(" ");
+        ArrayDeque<String> stack = new ArrayDeque<>();
+        Collections.addAll(stack,input);
+
+        while (stack.size() > 1) {
+            int firstNumb = Integer.parseInt(stack.pop());
+            String symbol = stack.pop();
+            int secondNumb = Integer.parseInt(stack.pop());
+            int result = 0;
+            if (symbol.equals("+")) {
+                result = firstNumb + secondNumb;
+            } else {
+                result = firstNumb - secondNumb;
+            }
+            stack.push(result + "");
+        }
+        System.out.println(stack.peek());
+    }
+}

@@ -1,0 +1,24 @@
+package StacksAndQueuesLab;
+
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class DecimalToBinary {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int numb = Integer.parseInt(scanner.nextLine());
+        if (numb == 0){
+            System.out.println(numb);
+        }
+        ArrayDeque<Integer> binary = new ArrayDeque<>();
+        while (numb != 0) {
+            binary.push(numb % 2);
+            numb = numb / 2;
+        }
+        for (int number: binary) {
+            System.out.print(number);
+        }
+    }
+
+}
